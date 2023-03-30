@@ -7,6 +7,8 @@ In this file, you will find examples of how to perform comprehensions of for loo
 into lists and dictionaries, after taking in data of various types.
 """
 
+import numpy as np
+from PIL import Image
 from typing import List
 
 from decorators import timeit
@@ -63,6 +65,31 @@ def double_comprehension(img: List[List[int]]) -> List[int]:
     return result
 
 
+@timeit
+def triple_loop(img: List[List[List[int]]]) -> List[int]:
+    """
+    Perform a triple for loop and flatten a 3D image
+    """
+    result = []
+
+    for y in img:
+        for x in y:
+            for rgb in x:
+                result.append(rgb)
+
+    return result
+
+
+@timeit
+def triple_comprehension(img: List[List[List[int]]]) -> List[int]:
+    """
+    Perform a triple list comprehension and flatten a 3D image
+    """
+    result = [rgb for y in img for x in y for rgb in x]
+
+    return result
+
+
 if __name__ == "__main__":
     string_test = ["a", "b", "c", "g", "h", "i", "m", "n", "o", "s", "t", "u", "y", "z"]
     simple_comprehension(string_test)
@@ -77,3 +104,8 @@ if __name__ == "__main__":
     ]
     double_comprehension(img_test)
     double_loop(img_test)
+    print()
+
+    color_test = np.array(Image.open("Tiny Rainbow.jpg")).tolist()
+    triple_comprehension(color_test)
+    triple_loop(color_test)

@@ -6,6 +6,7 @@ os.environ["PYTHON_USELESS_UTILS_TIMER"] = "FALSE"
 from comprehensions import (
     simple_comprehension, simple_loop,
     double_comprehension, double_loop,
+    triple_comprehension, triple_loop,
 )
 
 def test_simple():
@@ -25,6 +26,31 @@ def test_double():
 
     otpt_cmp = double_comprehension(inpt)
     otpt_lp = double_loop(inpt)
+
+    assert otpt_cmp == otpt_lp
+    assert expected_output == otpt_cmp
+
+
+def test_triple():
+    inpt = [
+        [
+            [255, 255, 255, 1], [0, 128, 0, 0], [255, 255, 255, 1]
+        ],
+        [
+            [0, 128, 0, 0], [0, 128, 0, 0], [0, 128, 0, 0]
+        ],
+        [
+            [255, 255, 255, 1], [0, 128, 0, 0], [255, 255, 255, 1]
+        ],
+    ]
+    expected_output = [
+        255, 255, 255, 1, 0, 128, 0, 0, 255, 255, 255, 1,
+        0, 128, 0, 0, 0, 128, 0, 0, 0, 128, 0, 0,
+        255, 255, 255, 1, 0, 128, 0, 0, 255, 255, 255, 1
+    ]
+
+    otpt_cmp = triple_comprehension(inpt)
+    otpt_lp = triple_loop(inpt)
 
     assert otpt_cmp == otpt_lp
     assert expected_output == otpt_cmp
