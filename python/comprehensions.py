@@ -91,7 +91,7 @@ def triple_comprehension(img: List[List[List[int]]]) -> List[int]:
 
 
 if __name__ == "__main__":
-    string_test = ["a", "b", "c", "g", "h", "i", "m", "n", "o", "s", "t", "u", "y", "z"]
+    string_test = ["a", "b", "c", "g", "h", "i", "m", "n", "o", "s", "t", "u", "y", "z"]*5
     simple_comprehension(string_test)
     simple_loop(string_test)
     print()
